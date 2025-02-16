@@ -26,4 +26,4 @@ jobs:
 
       - name: Run Jupyter Notebook
         run: |
-          papermill notebook.ipynb output.ipynb
+          papermill di_no.ipynb output.ipynb
