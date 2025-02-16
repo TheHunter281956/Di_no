@@ -1,0 +1,27 @@
+name: Run Google Colab Notebook
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Runs daily at 6 AM UTC (change if needed)
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  execute-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install jupyter nbconvert papermill
+
+      - name: Run Jupyter Notebook
+        run: |
+          papermill notebook.ipynb output.ipynb
